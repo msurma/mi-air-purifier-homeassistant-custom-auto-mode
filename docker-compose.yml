@@ -1,0 +1,8 @@
+version: "3"
+services:
+  mi-air-ha-listener:
+    container_name: mi-air-ha-listener
+    restart: always
+    build: ./
+    env_file:
+      - .env
