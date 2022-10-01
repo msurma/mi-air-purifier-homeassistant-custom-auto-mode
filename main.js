@@ -1,18 +1,18 @@
 const Homeassistant = require('node-homeassistant');
+const getenv = require('getenv');
 
 let ha = new Homeassistant({
-    // host: '192.168.1.11',
-    host: '127.0.0.1',
-    token: '',
-    protocol: 'ws',
-    port: 8123
+    host: getenv('HA_HOST'),
+    token: getenv('HA_TOKEN'),
+    port: getenv('HA_PORT', 8123),
+    protocol: 'ws'
 });
 
 const config = {
-    target_pm25: 5,
-    max_level_at_pm25: 50,
-    min_level: 2, // allowed range 0-14
-    max_level: 14,
+    target_pm25: getenv('CONF_TARGET_PM25', 5),
+    max_level_at_pm25: getenv('CONF_MAX_LEVEL_AT_PM25', 50),
+    min_level: getenv('CONF_MIN_LEVEL', 2), // allowed range 0-14
+    max_level: getenv('CONF_MAX_LEVEL', 14),
 };
 
 ha.on('connection', info => {
@@ -58,7 +58,7 @@ function getFanSpeedLevel(currentPm25) {
         return config.max_level;
     }
 
-    const fanSpeed = config.max_level * getFanSpeedPercentage(currentPm25);
+    const fanSpeed = (config.max_level - config.min_level) * getFanSpeedPercentage(currentPm25) + config.min_level;
     return Math.round(fanSpeed);
 }
 

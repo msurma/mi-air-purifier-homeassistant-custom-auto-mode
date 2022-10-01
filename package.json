@@ -5,6 +5,7 @@
   "author": "Michał Surmaczewski <github@msurma.net>",
   "license": "róbta co chceta (public domain)",
   "dependencies": {
+    "getenv": "^1.0.0",
     "node-homeassistant": "^1.6.0"
   },
   "scripts": {
