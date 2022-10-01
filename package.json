@@ -1,0 +1,13 @@
+{
+  "name": "mi-air-purifier-ha-auto-mode",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "Michał Surmaczewski <github@msurma.net>",
+  "license": "róbta co chceta (public domain)",
+  "dependencies": {
+    "node-homeassistant": "^1.6.0"
+  },
+  "scripts": {
+    "run": "node main.js"
+  }
+}
